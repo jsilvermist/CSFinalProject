@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+<section class="flex">
+    <article>
+        <h5>@ViewBag.Title</h5>
+        <p>Leave your message below.</p>
+
+        <form id="contactForm" novalidate onsubmit="contact.handleSubmit(); return false">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" class="form-control" placeholder="Name" required>
+                    <div class="invalid-feedback">Please enter your name or username.</div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" class="form-control" placeholder="Email" required
+                           pattern="^[^@("@")]+@("@")[^@("@")]+\.[^@("@")]+$">
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input id="subject" type="text" class="form-control" placeholder="Subject" required>
+                <div class="invalid-feedback">Please enter a subject.</div>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" class="form-control" rows="10"
+                          placeholder="Type your message here" required></textarea>
+                <div class="invalid-feedback">Please enter a message.</div>
+            </div>
+            <button id="submit" type="submit" class="btn btn-dark w-100 mt-3">
+                Send Message
+            </button>
+        </form>
+    </article>
+    <article>
+        <h5>Location</h5>
+        <p class="mb-1"><em>Address</em>: 55 City Centre Dr 2nd floor, Mississauga, ON L5B 1M3</p>
+        <p class="mb-1"><em>Phone</em>: (905) 949-4955</p>
+        <p class="mb-1"><em>Fax</em>: (905) 897-9755</p>
+        <div class="map-wrapper mt-3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.6157750414122!2d-79.64032468432193!3d43.59371886429253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b4725f43fcd8f%3A0xd785e797899a770c!2striOS+College+Business+Technology+Healthcare+-+Mississauga+Campus!5e0!3m2!1sen!2sca!4v1556044765098!5m2!1sen!2sca"
+                    frameborder="0"
+                    style="border:0"
+                    allowfullscreen></iframe>
+        </div>
+    </article>
+</section>
+
+<script>
+    const contact = {
+
+      form: document.querySelector('#contactForm'),
+
+      inputs: [
+        document.querySelector('#name'),
+        document.querySelector('#email'),
+        document.querySelector('#subject'),
+        document.querySelector('#message')
+      ],
+
+      submitButton: document.querySelector('#submit'),
+
+      handleSubmit: function(event) {
+        this.submitButton.disabled = true;
+
+        this.form.classList.add('was-validated');
+
+        // Validate form
+        const valid = [];
+        for (const input of this.inputs) {
+          valid.push(input.checkValidity());
+        }
+        if (valid.includes(false)) {
+          this.submitButton.disabled = false;
+          return;
+        };
+
+        // Generate post body
+        const formData = new FormData();
+        for (const input of this.inputs) {
+          formData.append(input.id, input.value);
+        }
+
+        // Send post request
+        this.generateRequest(formData);
+      },
+
+      generateRequest: function(data) {
+        fetch('@Url.Action("Post", "Contact")', {
+          method: 'post',
+          body: data,
+        })
+        .then((response) => response.json())
+        .then(this.handleResponse.bind(this))
+        .catch(this.handleError.bind(this));
+      },
+
+      handleResponse: function(data) {
+        // Send PHP error to `handleError`
+        if (!data.success) {
+          this.handleError(data.error);
+          return;
+        }
+        // Show "SUCCESS" on button
+        const buttonText = this.submitButton.textContent;
+        this.submitButton.setAttribute('success', true);
+        this.submitButton.textContent = 'Success';
+        setTimeout(() => {
+          this.submitButton.removeAttribute('success');
+          this.submitButton.textContent = buttonText;
+          this.submitButton.disabled = false;
+          this.reset();
+        }, 3000);
+      },
+
+      handleError: function(error) {
+        // Show "ERROR" on button
+        const buttonText = this.submitButton.textContent;
+        this.submitButton.setAttribute('error', true);
+        this.submitButton.textContent = 'Error';
+        setTimeout(() => {
+          this.submitButton.removeAttribute('error');
+          this.submitButton.textContent = buttonText;
+          this.submitButton.disabled = false;
+        }, 3000);
+        // Log error to console
+        const errorMessage = error || 'Unknown error.';
+        console.error('[Sending error]', errorMessage);
+      },
+
+      reset: function() {
+        for (const input of this.inputs) {
+          input.value = '';
+        }
+        this.form.classList.remove('was-validated');
+      }
+
+    };
+</script>

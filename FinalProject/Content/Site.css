@@ -1,0 +1,306 @@
+﻿:root {
+    /* Background Colors */
+    --background-color: #e9ecef;
+    --light-background-color: #f9f9f9;
+    --disabled-background-color: #aaa;
+    --divider-color: #e5e5e5;
+    /* Generic Colors */
+    --success-color: #3b3;
+    --error-color: #b13;
+    /* Text Colors */
+    --text-color: #222;
+    --secondary-text-color: #666;
+    --light-text-color: #fff;
+    --disabled-text-color: #555;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    padding: 0;
+    color: var(--text-color);
+}
+
+header.jumbotron {
+    border-radius: 0;
+}
+
+header h1 > a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+    header h1 > a:hover {
+        text-decoration: none;
+        color: inherit;
+    }
+
+nav.header {
+    background-color: var(--light-background-color);
+    border-bottom: .05rem solid var(--divider-color);
+}
+
+section {
+    margin-bottom: 32px;
+}
+
+    section:last-of-type {
+        margin-bottom: 0;
+    }
+
+    section.flex {
+        display: flex;
+    }
+
+        section.flex article {
+            flex: 1 0 50%;
+        }
+
+footer {
+    position: relative;
+    padding: 2.5rem 0;
+    color: var(--disabled-text-color);
+    text-align: center;
+    background-color: var(--light-background-color);
+    border-top: .05rem solid var(--divider-color);
+}
+
+    footer p:last-child {
+        margin-bottom: 0;
+    }
+
+a {
+    color: #005CC3;
+}
+
+[hidden] {
+    display: none;
+}
+
+.btn[disabled] {
+    background-color: var(--disabled-background-color);
+    color: var(--disabled-text-color);
+}
+
+    .btn[disabled][success] {
+        background-color: var(--success-color);
+        color: var(--light-text-color);
+    }
+
+    .btn[disabled][error] {
+        background-color: var(--error-color);
+        color: var(--light-text-color);
+    }
+
+.form-control:disabled, .form-control[readonly] {
+    pointer-events: none;
+}
+
+.form-control.is-valid,
+.was-validated .form-control:valid {
+    border-color: var(--success-color);
+}
+
+.valid-feedback {
+    color: var(--success-color);
+}
+
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+    border-color: var(--error-color);
+}
+
+.invalid-feedback {
+    color: var(--error-color);
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 8px;
+    padding-left: 8px;
+    padding: 0;
+    margin: 0 -8px -8px 0;
+}
+
+    .gallery .image {
+        display: inline-block;
+        overflow: hidden;
+        cursor: pointer;
+        flex: 1;
+        /* The width for an item is:
+  (100% - subPixelAdjustment - gutter * columns) / columns */
+        flex-basis: calc((100% - 0.1px - (8px * 4)) / 4);
+        max-width: calc((100% - 0.1px - (8px * 4)) / 4);
+        margin-bottom: 8px;
+        margin-right: 8px;
+        position: relative;
+    }
+
+        .gallery .image::before {
+            display: block;
+            content: "";
+            /* Aspect ratio: 4/3 */
+            padding-top: 75%;
+        }
+
+        .gallery .image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+.image-window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 99;
+}
+
+    .image-window .wrapper {
+        background-color: #fff;
+        border-radius: 12px;
+        margin: 12px;
+        padding: 8px;
+        height: calc(100% - 24px);
+    }
+
+    .image-window .image {
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: 100%;
+    }
+
+    .image-window .close {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        width: 32px;
+        height: 32px;
+        font-size: 2.5rem;
+        color: rgba(0, 0, 0, 0.8);
+        text-shadow: -2px -2px 3px rgba(255, 255, 255, 0.8), 2px -2px 3px rgba(255, 255, 255, 0.8), -2px 2px 3px rgba(255, 255, 255, 0.8), 2px 2px 3px rgba(255, 255, 255, 0.8);
+    }
+
+        .image-window .close span {
+            display: block;
+            height: 32px;
+            width: 32px;
+            line-height: 24px;
+        }
+
+.map-wrapper,
+.video-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+    .map-wrapper::before {
+        display: block;
+        content: "";
+        /* Aspect ratio: 1 */
+        padding-top: 100%;
+    }
+
+    .video-wrapper::before {
+        display: block;
+        content: "";
+        /* Aspect ratio: 16/9 (56.25%) */
+        padding-top: calc(100% / (16 / 9));
+    }
+
+    .map-wrapper > *,
+    .video-wrapper > * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+/* smaller than breakpoint-lg */
+@media (max-width: 991.98px) {
+    .gallery .image {
+        flex-basis: calc((100% - 0.1px - (8px * 3)) / 3);
+        max-width: calc((100% - 0.1px - (8px * 3)) / 3);
+    }
+
+    .gallery.featured .image:nth-child(4) {
+        display: none;
+    }
+}
+
+/* larger than breakpoint-md */
+@media (min-width: 768px) {
+    section.flex article:not(:last-of-type) {
+        margin-right: 16px;
+        padding-right: 16px;
+        border-right: 1px solid var(--divider-color);
+    }
+}
+
+/* smaller than breakpoint-md */
+@media (max-width: 767.98px) {
+    section.flex {
+        flex-direction: column;
+    }
+
+        section.flex article {
+            flex: 1 0 100%;
+        }
+
+            section.flex article:not(:last-of-type) {
+                margin-bottom: 32px;
+                padding-bottom: 32px;
+                border-bottom: 1px solid var(--divider-color);
+            }
+}
+
+/* smaller than breakpoint-sm */
+@media (max-width: 575.98px) {
+    header h1 {
+        font-size: 2.1rem;
+    }
+
+    header .lead {
+        font-size: 1rem;
+    }
+
+    .gallery .image {
+        flex-basis: calc((100% - 0.1px - (8px * 2)) / 2);
+        max-width: calc((100% - 0.1px - (8px * 2)) / 2);
+    }
+
+    .gallery.featured .image:nth-child(3) {
+        display: none;
+    }
+}
+
+/* custom extra small breakpoint */
+@media (max-width: 380px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header .lead {
+        font-size: 0.85rem;
+    }
+}
