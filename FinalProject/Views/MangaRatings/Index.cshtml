@@ -7,7 +7,7 @@
 <h4>@ViewBag.Title</h4>
 
 <p>
-    @Html.ActionLink("Add new manga rating", "Create")
+    @Html.ActionLink("Add New Rating", "Create")
 </p>
 <table class="table">
     <tr>
@@ -40,7 +40,7 @@
         <td>
             @if (@Html.DisplayFor(modelItem => item.Link).ToString() != string.Empty)
             {
-                <a href="@Html.DisplayFor(modelItem => item.Link)">Link</a>
+                <a href="@Html.DisplayFor(modelItem => item.Link)" target="_blank">Link</a>
             }
         </td>
         <td>

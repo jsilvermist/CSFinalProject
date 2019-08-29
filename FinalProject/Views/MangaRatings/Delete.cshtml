@@ -48,7 +48,9 @@
         <dd>
             @if (@Html.DisplayFor(model => model.Link).ToString() != string.Empty)
             {
-                <a href="@Html.DisplayFor(model => model.Link)">@Html.DisplayFor(model => model.Link)</a>
+                <a href="@Html.DisplayFor(model => model.Link)" target="_blank">
+                    @Html.DisplayFor(model => model.Link)
+                </a>
             }
             else
             {
