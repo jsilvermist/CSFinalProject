@@ -23,7 +23,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OriginalName)
+            @if (@Html.DisplayFor(model => model.OriginalName).ToString() != string.Empty)
+            {
+                @Html.DisplayFor(model => model.OriginalName)
+            }
+            else
+            {
+                <span>&nbsp;</span>
+            }
         </dd>
 
         <dt>
@@ -39,7 +46,14 @@
         </dt>
 
         <dd>
-            <a href="@Html.DisplayFor(model => model.Link)">@Html.DisplayFor(model => model.Link)</a>
+            @if (@Html.DisplayFor(model => model.Link).ToString() != string.Empty)
+            {
+                <a href="@Html.DisplayFor(model => model.Link)">@Html.DisplayFor(model => model.Link)</a>
+            }
+            else
+            {
+                <a>&nbsp;</a>
+            }
         </dd>
 
     </dl>
