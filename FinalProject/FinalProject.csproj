@@ -171,6 +171,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\photo.jpg" />
     <Content Include="Images\icons\android-chrome-192x192.png" />
     <Content Include="Images\icons\android-chrome-256x256.png" />
     <Content Include="Images\icons\apple-touch-icon.png" />
