@@ -8,11 +8,14 @@ namespace FinalProject.Controllers
 {
     public class HomeController : Controller
     {
+        public HomeController() : base()
+        {
+            ViewData["HomeIsActive"] = "active";
+        }
+
         // GET: Home
         public ActionResult Index()
         {
-            ViewData["HomeIsActive"] = "active";
-
             return View();
         }
     }

@@ -27,6 +27,8 @@ namespace FinalProject.Controllers
         [HttpPost]
         public string Index(ContactMesssage msg)
         {
+            HttpContext.Response.AddHeader("Content-Type", "application/json; charset=utf-8");
+
             dynamic result = SendContactMessage(msg);
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             return serializer.Serialize(result);
@@ -59,6 +61,7 @@ namespace FinalProject.Controllers
             };
             mm.To.Add("contact@jasonallen.dev");
             mm.ReplyToList.Add(new MailAddress(msg.Email, msg.Name));
+            mm.Headers.Add("Disposition-Notification-To", "csproject@jasonallen.dev");
 
             try {
                 client.Send(mm);

@@ -109,14 +109,17 @@ a {
         color: var(--light-text-color);
     }
 
-.form-control:disabled, .form-control[readonly] {
-    pointer-events: none;
+.form-control {
 }
 
-.form-control.is-valid,
-.was-validated .form-control:valid {
-    border-color: var(--success-color);
-}
+    .form-control:disabled, .form-control[readonly] {
+        pointer-events: none;
+    }
+
+    .form-control.is-valid,
+    .was-validated .form-control:valid {
+        border-color: var(--success-color);
+    }
 
 .valid-feedback {
     color: var(--success-color);

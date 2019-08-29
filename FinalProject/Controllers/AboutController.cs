@@ -8,11 +8,14 @@ namespace FinalProject.Controllers
 {
     public class AboutController : Controller
     {
+        public AboutController() : base()
+        {
+            ViewData["AboutIsActive"] = "active";
+        }
+
         // GET: About
         public ActionResult Index()
         {
-            ViewData["AboutIsActive"] = "active";
-
             return View();
         }
     }
