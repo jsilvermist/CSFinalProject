@@ -1,0 +1,49 @@
+﻿@model FinalProject.Models.MangaRating
+
+@{
+    ViewBag.Title = "Details - Manga Ratings";
+}
+
+<h4>Manga Ratings - Details</h4>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OriginalName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OriginalName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating) / 10
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+
+        <dd>
+            <a href="@Html.DisplayFor(model => model.Link)">@Html.DisplayFor(model => model.Link)</a>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

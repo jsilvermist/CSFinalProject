@@ -1,0 +1,56 @@
+﻿@model FinalProject.Models.MangaRating
+
+@{
+    ViewBag.Title = "Delete - Manga Ratings";
+}
+
+<h4>Manga Ratings - Delete</h4>
+
+<h5>Are you sure you want to delete this?</h5>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OriginalName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OriginalName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating) / 10
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+
+        <dd>
+            <a href="@Html.DisplayFor(model => model.Link)">@Html.DisplayFor(model => model.Link)</a>
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> &nbsp;|&nbsp;
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
