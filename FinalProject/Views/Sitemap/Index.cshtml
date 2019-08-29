@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Sitemap";
+}
+
+<section>
+    <h4>@ViewBag.Title</h4>
+
+    <ul>
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "Index", "About")</li>
+        <li>@Html.ActionLink("Contact", "Index", "Contact")</li>
+        <li>
+            @Html.ActionLink("Manga Ratings", "Index", "MangaRatings")
+            <ul>
+                <li>@Html.ActionLink("Create", "Create", "MangaRatings")</li>
+            </ul>
+        </li>
+    </ul>
+</section>

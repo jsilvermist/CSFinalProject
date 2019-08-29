@@ -132,6 +132,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MangaRatingsController.cs" />
+    <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -269,6 +270,7 @@
     <Content Include="Views\MangaRatings\Details.cshtml" />
     <Content Include="Views\MangaRatings\Edit.cshtml" />
     <Content Include="Views\MangaRatings\Index.cshtml" />
+    <Content Include="Views\Sitemap\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
